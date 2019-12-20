@@ -14,9 +14,9 @@ from cv2.cv2 import kmeans
 
 
 
-img = cv2.imread('./result/Sprite-0005_result.jpg',cv2.IMREAD_GRAYSCALE)
+img = cv2.imread('./result/Q1_result.jpg')
 
-height, width = img.shape
+height, width,shape = img.shape
 
 print(width,height)
 
@@ -28,22 +28,29 @@ yy = int(height/number)
 lasty = 0
 lastx = 0
 map = []
+img = cv2.line(img,(0,0),(width,0),(0,0,0),5)
+img = cv2.line(img,(0,0),(0,height),(0,0,0),5)
 map.append([])
 for i in range(number):
+    img = cv2.line(img,(0,yy),(width,yy),(0,0,0),5)
     xx = 0
     lastx = 0
     for j in range(5):
-      #  img = cv2.line(img,(xx,0),(xx,height),(255,0,0),1)
+        img = cv2.line(img,(xx,0),(xx,height),(0,0,0),5)
 
         xx += int(width/5)
         print(lasty,yy,lastx,xx)
         dot = img[lasty:yy,lastx:xx]
+
         lastx = xx
         im = './obj/img'+str(i)+','+str(j)+'.jpg'
-        #cv2.imshow(im,dot)
+       # cv2.imshow(im,dot)
+        img = cv2.line(img,(xx,0),(xx,height),(0,0,0),5)
+        kernel =  np.ones((3,3),np.uint8)
+        dot = cv2.erode(dot,kernel,iterations = 4)
         cv2.imwrite(im, dot)
         
-   # img = cv2.line(img,(0,yy),(width,yy),(255,0,0),1)
+    img = cv2.line(img,(0,yy),(width,yy),(0,0,0),5)
     lasty = yy
     yy += int(height/number)
     

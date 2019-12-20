@@ -1,9 +1,9 @@
 import cv2, os
 import numpy as np
+    
+img_path = './img/Q1.jpg'
 
-img_path = './img/Sprite-0004.jpg'
-img_path = './img/unn.png'
-img_path = './img/try.png'
+
 filename, ext = os.path.splitext(os.path.basename(img_path))
 ori_img = cv2.imread(img_path)
 
@@ -15,7 +15,7 @@ def mouse_handler(event, x, y, flags, param):
     img = ori_img.copy()
 
     src.append([x, y])
-
+    
     for xx, yy in src:
       cv2.circle(img, center=(xx, yy), radius=5, color=(0, 255, 0), thickness=-1, lineType=cv2.LINE_AA)
 
@@ -34,16 +34,17 @@ def mouse_handler(event, x, y, flags, param):
         [width, height],
         [0, height]
       ], dtype=np.float32)
-
-      M = cv2.getPerspectiveTransform(src=src_np, dst=dst_np)
-      result = cv2.warpPerspective(ori_img, M=M, dsize=(width, height))
-
+      
+      M1 = cv2.getPerspectiveTransform(src=src_np, dst=dst_np)
+      result = cv2.warpPerspective(ori_img, M=M1, dsize=(width, height))
+      
       cv2.imshow('result', result)
       cv2.imwrite('./result/%s_result%s' % (filename, ext), result)
-
+      
 # main
 cv2.namedWindow('img')
 cv2.setMouseCallback('img', mouse_handler)
 
 cv2.imshow('img', ori_img)
+
 cv2.waitKey(0)
