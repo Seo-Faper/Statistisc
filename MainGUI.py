@@ -1,14 +1,15 @@
-'''
-Created on 2019. 12. 20.
-
-@author: dswhd
-'''
-from tkinter import *
-
+from tkinter import*
 root = Tk()
-root.title("Statisties Shiv ver 0.1")
-root.geometry("800x450+200+150")
-root.resizable(False, False)
-lbl = Label(root,text = "Welcome to Python")
-lbl.pack()
+
+lbl = Label(root, text = "설문지 번호 : ")
+lbl.grid(row = 0, column = 0)
+txt = Entry(root)
+txt.grid(row = 0, column = 1)
+
+
+btn = Button(root, text = "Ok", width = 15)
+btn.grid(row = 1, column = 1)
+
 root.mainloop()
+
+#일반적 특징 3개 
