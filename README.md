@@ -6,5 +6,3 @@
 - OpenCV 의 투시 변환을 통한 사진 이미지를 정규화
 - RGB 평균을 통한 설문 채크 항목 확인 
 - 결과를 엑셀로 변환 
-
-https://github.com/Seo-Faper/Statistisc/blob/master/houghlines5.jpg?raw=true
